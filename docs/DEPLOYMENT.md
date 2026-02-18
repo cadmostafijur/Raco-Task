@@ -135,7 +135,35 @@ npm start
 
 ---
 
-## 6. Production Security Notes
+## 6. Fly.io Backend Deployment
+
+1. Install [Fly CLI](https://fly.io/docs/hands-on/install-flyctl/)
+2. Login: `fly auth login`
+3. From project root:
+   ```bash
+   cd backend
+   fly launch --no-deploy
+   ```
+4. When prompted:
+   - App name: `raco-task-backend` (or your choice)
+   - Region: choose nearest
+   - Don't add PostgreSQL (use external Neon/other)
+5. Set secrets (env vars):
+   ```bash
+   fly secrets set DATABASE_URL="postgresql://..."
+   fly secrets set JWT_ACCESS_SECRET="your-secret"
+   fly secrets set JWT_REFRESH_SECRET="your-secret"
+   fly secrets set CORS_ORIGIN="https://your-frontend.vercel.app"
+   ```
+6. Deploy:
+   ```bash
+   fly deploy
+   ```
+7. Your backend: `https://raco-task-backend.fly.dev`
+
+---
+
+## 7. Production Security Notes
 
 ### Backend
 
@@ -158,7 +186,7 @@ npm start
 
 ---
 
-## 7. Quick Start (Local)
+## 8. Quick Start (Local)
 
 ```bash
 # Terminal 1 - Backend
