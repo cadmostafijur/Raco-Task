@@ -85,9 +85,11 @@ npm run db:seed
 1. Create new **Web Service**
 2. Connect your repository
 3. Build settings:
-   - **Build Command:** `cd backend && npm install && npm run db:generate && npm run build`
-   - **Start Command:** `cd backend && npm run db:migrate:prod && npm start`
-   - **Root Directory:** (leave empty or set to repo root)
+   - **Root Directory:** `backend`
+   - **Build Command:** `npm install && npx prisma generate`
+   - **Start Command:** `npx prisma db push && npm start`
+
+   > The backend uses `tsx` to run TypeScript directly—no build step required.
 
 4. Environment variables: Add all from `backend/.env.example` plus production values
 
