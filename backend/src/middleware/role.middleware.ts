@@ -1,8 +1,7 @@
 import { Response, NextFunction } from "express";
+import { Role } from "@prisma/client";
 import { AuthRequest } from "../types";
 import { ForbiddenError } from "../utils/errors";
-
-type Role = "ADMIN" | "BUYER" | "PROBLEM_SOLVER";
 
 export const requireRole = (...allowedRoles: Role[]) => {
   return (req: AuthRequest, res: Response, next: NextFunction): void => {

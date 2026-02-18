@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { ROLES } from "../constants/roles";
 
 const prisma = new PrismaClient();
 
@@ -26,7 +27,7 @@ export const notificationService = {
     newCount: number;
     items: NotificationItem[];
   }> {
-    if (role === "BUYER" || role === "ADMIN") {
+    if (role === ROLES.BUYER || role === ROLES.ADMIN) {
       const [projects, taskSubmissions, user] = await Promise.all([
         prisma.project.findMany({
           where: {
@@ -102,7 +103,7 @@ export const notificationService = {
       return { count: items.length, newCount, items };
     }
 
-    if (role === "PROBLEM_SOLVER") {
+    if (role === ROLES.PROBLEM_SOLVER) {
       const [assigned, user] = await Promise.all([
         prisma.project.findMany({
           where: {

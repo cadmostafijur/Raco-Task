@@ -1,5 +1,6 @@
 import { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { Role } from "@prisma/client";
 import { config } from "../config";
 import { AuthRequest } from "../types";
 import { UnauthorizedError } from "../utils/errors";
@@ -28,7 +29,7 @@ export const authenticate = (
     req.user = {
       userId: decoded.userId,
       email: decoded.email,
-      role: decoded.role as "ADMIN" | "BUYER" | "PROBLEM_SOLVER",
+      role: decoded.role as Role,
     };
 
     next();

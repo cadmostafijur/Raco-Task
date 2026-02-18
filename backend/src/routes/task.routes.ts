@@ -5,22 +5,23 @@ import { requireRole } from "../middleware/role.middleware";
 import { validate } from "../middleware/validate.middleware";
 import { createTaskSchema, updateTaskSchema } from "../validators/task.validator";
 import submissionRoutes from "./submission.routes";
+import { ROLES } from "../constants/roles";
 
 const router = Router({ mergeParams: true });
 
 router.use(authenticate);
-router.use(requireRole("ADMIN", "BUYER", "PROBLEM_SOLVER"));
+router.use(requireRole(ROLES.ADMIN, ROLES.BUYER, ROLES.PROBLEM_SOLVER));
 
 router.get("/", taskController.getByProject);
 router.post(
   "/",
-  requireRole("PROBLEM_SOLVER"),
+  requireRole(ROLES.PROBLEM_SOLVER),
   validate(createTaskSchema),
   taskController.create
 );
 router.patch(
   "/:taskId",
-  requireRole("PROBLEM_SOLVER"),
+  requireRole(ROLES.PROBLEM_SOLVER),
   validate(updateTaskSchema),
   taskController.update
 );

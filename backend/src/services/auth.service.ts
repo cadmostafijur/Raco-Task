@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import { config } from "../config";
 import { UnauthorizedError, BadRequestError } from "../utils/errors";
 import type { RegisterInput, LoginInput } from "../validators/auth.validator";
+import { ROLES } from "../constants/roles";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +25,7 @@ export const authService = {
         email: input.email,
         password: hashedPassword,
         name: input.name,
-        role: "PROBLEM_SOLVER",
+        role: ROLES.PROBLEM_SOLVER,
       },
       select: {
         id: true,

@@ -5,6 +5,7 @@ import {
   ForbiddenError,
 } from "../utils/errors";
 import type { CreateTaskInput, UpdateTaskInput } from "../validators/task.validator";
+import { ROLES } from "../constants/roles";
 
 const prisma = new PrismaClient();
 
@@ -107,7 +108,7 @@ export const taskService = {
     }
 
     const canAccess =
-      role === "ADMIN" ||
+      role === ROLES.ADMIN ||
       project.buyerId === userId ||
       project.solverId === userId;
 

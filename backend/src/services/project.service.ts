@@ -5,6 +5,7 @@ import {
   ForbiddenError,
 } from "../utils/errors";
 import type { CreateProjectInput, AssignSolverInput } from "../validators/project.validator";
+import { ROLES } from "../constants/roles";
 
 const prisma = new PrismaClient();
 
@@ -37,9 +38,9 @@ export const projectService = {
 
   async getAll(userId: string, role: string) {
     const where =
-      role === "ADMIN"
+      role === ROLES.ADMIN
         ? {}
-        : role === "BUYER"
+        : role === ROLES.BUYER
         ? { buyerId: userId }
         : {
             OR: [
@@ -99,11 +100,11 @@ export const projectService = {
     }
 
     const canAccess =
-      role === "ADMIN" ||
+      role === ROLES.ADMIN ||
       project.buyerId === userId ||
       project.solverId === userId ||
       project.requests.some((r) => r.userId === userId) ||
-      (role === "PROBLEM_SOLVER" && project.status === "OPEN");
+      (role === ROLES.PROBLEM_SOLVER && project.status === "OPEN");
 
     if (!canAccess) {
       throw new ForbiddenError("Access denied");

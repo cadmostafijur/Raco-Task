@@ -8,6 +8,7 @@ import {
 } from "../utils/errors";
 import type { ReviewSubmissionInput } from "../validators/submission.validator";
 import { config } from "../config";
+import { ROLES } from "../constants/roles";
 
 const prisma = new PrismaClient();
 
@@ -163,7 +164,7 @@ export const submissionService = {
 
     const { project } = submission.task;
     const canAccess =
-      role === "ADMIN" ||
+      role === ROLES.ADMIN ||
       project.buyerId === userId ||
       project.solverId === userId;
 

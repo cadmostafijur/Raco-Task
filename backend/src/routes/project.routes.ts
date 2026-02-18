@@ -11,6 +11,7 @@ import {
 import taskRoutes from "./task.routes";
 import { requestController } from "../controllers/request.controller";
 import { createRequestSchema } from "../validators/request.validator";
+import { ROLES } from "../constants/roles";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.use(authenticate);
 
 router.post(
   "/",
-  requireRole("BUYER", "ADMIN"),
+  requireRole(ROLES.BUYER, ROLES.ADMIN),
   validate(createProjectSchema),
   projectController.create
 );
@@ -27,14 +28,14 @@ router.get("/", projectController.getAll);
 router.get("/:id", validate(projectIdSchema), projectController.getById);
 router.put(
   "/:id/assign",
-  requireRole("BUYER"),
+  requireRole(ROLES.BUYER),
   validate(assignSolverSchema),
   projectController.assignSolver
 );
 
 router.post(
   "/:id/requests",
-  requireRole("PROBLEM_SOLVER"),
+  requireRole(ROLES.PROBLEM_SOLVER),
   validate(createRequestSchema),
   requestController.create
 );
