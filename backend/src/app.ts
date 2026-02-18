@@ -15,6 +15,22 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Root endpoint
+app.get("/", (req, res) => {
+  res.json({
+    message: "Raco Task API",
+    status: "running",
+    version: "1.0.0",
+    endpoints: {
+      auth: "/api/auth",
+      users: "/api/users",
+      projects: "/api/projects",
+      requests: "/api/requests",
+      notifications: "/api/notifications"
+    }
+  });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/projects", projectRoutes);
