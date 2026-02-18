@@ -1,0 +1,24 @@
+# Render Blueprint for Backend
+# Use this when deploying backend as a separate service
+# Or configure manually in Render Dashboard
+
+services:
+  - type: web
+    name: marketplace-workflow-backend
+    runtime: node
+    rootDir: backend
+
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npx prisma db push && npm start
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      - key: PORT
+        value: 4000
