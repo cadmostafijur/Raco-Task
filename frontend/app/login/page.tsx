@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
+import Navbar from "@/components/Layout/Navbar";
 import { Zap, Mail, Lock, ArrowRight } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -41,7 +42,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <>
+      <Navbar />
+      <div className="min-h-screen flex">
       {/* Left - Illustration */}
       <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(99,102,241,0.2),transparent_50%)]" />
@@ -158,6 +161,7 @@ export default function LoginPage() {
           </p>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

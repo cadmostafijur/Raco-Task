@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
+import Navbar from "@/components/Layout/Navbar";
 import { Zap, Mail, Lock, User, ArrowRight } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -42,7 +43,9 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <>
+      <Navbar />
+      <div className="min-h-screen flex">
       {/* Left - Form */}
       <div className="flex-1 flex items-center justify-center p-8 order-2 lg:order-1">
         <motion.div
@@ -176,6 +179,7 @@ export default function RegisterPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
