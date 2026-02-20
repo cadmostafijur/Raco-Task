@@ -117,6 +117,14 @@ Runs both backend and frontend. **Alternative:** Double-click `start.bat` to ope
 
 ---
 
+## Demo Credentials
+
+- **Admin**: `admin@marketplace.com` / `Admin123!`
+- **Buyer**: `buyer@marketplace.com` / `Buyer123!`
+- **Problem Solver**: `solver@marketplace.com` / `Solver123!`
+
+See [docs/DEMO_CREDENTIALS.md](docs/DEMO_CREDENTIALS.md) for full demo account details and usage notes.
+
 ## API Route Summary
 
 Base URL: `http://localhost:4000/api`  
