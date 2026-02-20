@@ -311,12 +311,16 @@ export default function Navbar() {
           </>
         ) : (
           <div className="flex items-center gap-2">
-            <Link href="/login">
-              <Button variant="ghost">Sign in</Button>
-            </Link>
-            <Link href="/register">
-              <Button>Get started</Button>
-            </Link>
+            {pathname !== "/login" && (
+              <Link href="/login">
+                <Button variant="ghost">Sign in</Button>
+              </Link>
+            )}
+            {pathname !== "/register" && (
+              <Link href="/register">
+                <Button>Get started</Button>
+              </Link>
+            )}
           </div>
         )}
       </div>
