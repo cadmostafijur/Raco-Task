@@ -243,8 +243,8 @@ All protected routes require: `Authorization: Bearer <accessToken>`
 
 | Service | URL |
 |---------|-----|
-| Live Frontend | [Add your deployed frontend URL] |
-| Live Backend API | [Add your deployed backend URL] |
+| Live Frontend | [https://raco-task.vercel.app] |
+| Live Backend API | [https://raco-task.onrender.com] |
 
 ### Deployment Steps
 
